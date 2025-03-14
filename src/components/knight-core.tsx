@@ -16,7 +16,7 @@ type GLTFResult = {
 
 const KnightChess: React.FC = () => {
     const { isActive } = useWarden()
-    const { nodes, materials } = useGLTF('/red_knight.glb') as GLTF & GLTFResult
+    const { nodes, materials } = useGLTF('/red_knight.glb') as unknown as GLTF & GLTFResult
 
     const deviceControl = DeviceController.instance
 
