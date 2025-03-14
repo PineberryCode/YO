@@ -1,10 +1,10 @@
 import { Mesh, Material } from 'three'
 import { useGLTF, useKeyboardControls } from "@react-three/drei"
-import { useFrame } from "@react-three/fiber"
-import { CapsuleCollider, RigidBody } from "@react-three/rapier"
+import { Camera, useFrame } from "@react-three/fiber"
+import { CapsuleCollider, RapierRigidBody, RigidBody } from "@react-three/rapier"
 import useWarden from "@/hooks/use-guard"
 import useRespawn from "@/hooks/use-respawn"
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 import DeviceController from "@/models/device-controller"
 import motions, { Controls } from "@/controllers/controller"
 import { GLTF } from 'three-stdlib'
@@ -20,13 +20,27 @@ const KnightChess: React.FC = () => {
 
     const deviceControl = DeviceController.instance
 
+    const rigidBodyRef = useRef<RapierRigidBody | null>(null)
+    const containerRef = useRef<Camera | null>(null)
+    const characterRef = useRef<Camera | null>(null)
+    const cameraTargetRef = useRef<Camera | null>(null)
+    const cameraPositionRef = useRef<Camera | null>(null)
+
     const [, get] = useKeyboardControls<Controls>()
 
     const { hasFallen, setHasFallen, knightPosition } = useRespawn()
 
     useEffect(() => {
-        if (hasFallen && deviceControl.rigidBody.current) {
-            deviceControl.rigidBody.current.setTranslation(
+        deviceControl.rigidBody = rigidBodyRef.current
+        deviceControl.container = containerRef.current
+        deviceControl.character = characterRef.current
+        deviceControl.cameraTarget = cameraTargetRef.current
+        deviceControl.cameraPosition = cameraPositionRef.current
+    })
+
+    useEffect(() => {
+        if (hasFallen && deviceControl.rigidBody) {
+            deviceControl.rigidBody.setTranslation(
                 { x: knightPosition[0], y: knightPosition[1], z: knightPosition[2] },
                 true
             )
@@ -44,7 +58,7 @@ const KnightChess: React.FC = () => {
     return (
         <RigidBody
             name="spider-knight"
-            ref={deviceControl.rigidBody}
+            ref={rigidBodyRef}
             type="dynamic"
             rotation={[0, 6.5, 0]}
             position={[5, 2, 0]}
@@ -58,7 +72,7 @@ const KnightChess: React.FC = () => {
                     other.rigidBodyObject?.name === "ground-hobbies" ||
                     other.rigidBodyObject?.name === "ground-contact-to-me"
                 ) {
-                    deviceControl.isOnGround.current = true
+                    deviceControl.isOnGround = true
                 }
 
                 if (other.rigidBodyObject?.name === "limit-floor") { setHasFallen(true) }
@@ -71,16 +85,16 @@ const KnightChess: React.FC = () => {
                     other.rigidBodyObject?.name === "ground-hobbies" ||
                     other.rigidBodyObject?.name === "ground-contact-to-me"
                 ) {
-                    deviceControl.isOnGround.current = false
+                    deviceControl.isOnGround = false
                 }
 
                 if (other.rigidBodyObject?.name === "limit-floor") { setHasFallen(false) }
             }}
         >
-            <group ref={deviceControl.container}>
-                <group ref={deviceControl.cameraTarget} position={[0, 0, 0]} />
-                <group ref={deviceControl.cameraPosition} position={[-3, 3, 3]} />
-                <group ref={deviceControl.character}>
+            <group ref={containerRef}>
+                <group ref={cameraTargetRef} position={[0, 0, 0]} />
+                <group ref={cameraPositionRef} position={[-3, 3, 3]} />
+                <group ref={characterRef}>
                     <mesh
                         name="core-knight"
                         receiveShadow

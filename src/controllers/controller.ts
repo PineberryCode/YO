@@ -7,25 +7,25 @@ export type Controls = "left" | "right" | "forward" | "backward" | "run" | "jump
 type GetControls = () => Record<Controls, boolean>
 
 function motions(camera: Camera, get: GetControls, device: DeviceController) {
-    if (device.rigidBody.current) {
-        const velocity = device.rigidBody.current.linvel()
+    if (device.rigidBody) {
+        const velocity = device.rigidBody.linvel()
 
         const movement = { x: 0, z: 0 }
 
-        if (get().left || device.leftPressed.current) { device.rotationTarget.current += device.rotationSpeed }
-        if (get().right || device.rightPressed.current) { device.rotationTarget.current -= device.rotationSpeed }
+        if (get().left || device.leftPressed) { device.rotationTarget += device.rotationSpeed }
+        if (get().right || device.rightPressed) { device.rotationTarget -= device.rotationSpeed }
 
-        if (get().forward || device.forwardPressed.current) {
-            movement.x = - Math.sin(device.rotationTarget.current)
-            movement.z = - Math.cos(device.rotationTarget.current)
+        if (get().forward || device.forwardPressed) {
+            movement.x = - Math.sin(device.rotationTarget)
+            movement.z = - Math.cos(device.rotationTarget)
         }
 
-        if (get().backward || device.backwardPressed.current) {
-            movement.x = Math.sin(device.rotationTarget.current)
-            movement.z = Math.cos(device.rotationTarget.current)
+        if (get().backward || device.backwardPressed) {
+            movement.x = Math.sin(device.rotationTarget)
+            movement.z = Math.cos(device.rotationTarget)
         }
 
-        const speed = (get().run || device.runPressed.current) ? device.runSpeed : device.walkSpeed
+        const speed = (get().run || device.runPressed) ? device.runSpeed : device.walkSpeed
         velocity.x = movement.x * speed
         velocity.z = movement.z * speed
 
@@ -35,30 +35,30 @@ function motions(camera: Camera, get: GetControls, device: DeviceController) {
             z: movement.z * speed,
         }
 
-        if ((get().jump || device.jumpPressed.current) && device.isOnGround.current) {
+        if ((get().jump || device.jumpPressed) && device.isOnGround) {
             newVelocity.y = device.jump
-            device.isOnGround.current = false
+            device.isOnGround = false
         }
 
-        device.rigidBody.current.setLinvel(newVelocity, true)
+        device.rigidBody.setLinvel(newVelocity, true)
     }
 
-    if (device.container.current) {
-        device.container.current.rotation.y = MathUtils.lerp(
-            device.container.current.rotation.y,
-            device.rotationTarget.current,
+    if (device.container) {
+        device.container.rotation.y = MathUtils.lerp(
+            device.container.rotation.y,
+            device.rotationTarget,
             0.1
         )
     }
 
-    device.cameraPosition.current?.getWorldPosition(device.cameraWorldPosition.current)
-    camera.position.lerp(device.cameraWorldPosition.current, 0.1)
+    device.cameraPosition?.getWorldPosition(device.cameraWorldPosition)
+    camera.position.lerp(device.cameraWorldPosition, 0.1)
 
-    if (device.cameraTarget.current) {
-        device.cameraTarget.current?.getWorldPosition(device.cameraLookAtWorldPosition.current)
-        device.cameraLookAt.current.lerp(device.cameraLookAtWorldPosition.current, 0.1)
+    if (device.cameraTarget) {
+        device.cameraTarget?.getWorldPosition(device.cameraLookAtWorldPosition)
+        device.cameraLookAt.lerp(device.cameraLookAtWorldPosition, 0.1)
 
-        camera.lookAt(device.cameraLookAt.current)
+        camera.lookAt(device.cameraLookAt)
     }
 }
 

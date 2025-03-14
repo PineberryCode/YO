@@ -9,32 +9,25 @@ import DeviceController from "@/models/device-controller"
 const MobileControl = () => {
     const mobileController = DeviceController.instance
 
-    const forwardPressed = mobileController.forwardPressed
-    const backwardPressed = mobileController.backwardPressed
-    const leftPressed = mobileController.leftPressed
-    const rightPressed = mobileController.rightPressed
-    const jumpPressed = mobileController.jumpPressed
-    const runPressed = mobileController.runPressed
-
     const handleTouchStart = (action: "forward" | "backward" | "left" | "right" | "jump" | "run") => {
         switch (action) {
             case "forward":
-                forwardPressed.current = true
+                mobileController.forwardPressed = true
                 break
             case "backward":
-                backwardPressed.current = true
+                mobileController.backwardPressed = true
                 break
             case "left":
-                leftPressed.current = true
+                mobileController.leftPressed = true
                 break
             case "right":
-                rightPressed.current = true
+                mobileController.rightPressed = true
                 break;
             case "jump":
-                jumpPressed.current = true
+                mobileController.jumpPressed = true
                 break
             case "run":
-                runPressed.current = true
+                mobileController.runPressed = true
                 break
         }
     }
@@ -42,22 +35,22 @@ const MobileControl = () => {
     const handleTouchEnd = (action: "forward" | "backward" | "left" | "right" | "jump" | "run") => {
         switch (action) {
             case "forward":
-                forwardPressed.current = false
+                mobileController.forwardPressed = false
                 break
             case "backward":
-                backwardPressed.current = false
+                mobileController.backwardPressed = false
                 break
             case "left":
-                leftPressed.current = false
+                mobileController.leftPressed = false
                 break
             case "right":
-                rightPressed.current = false
+                mobileController.rightPressed = false
                 break;
             case "jump":
-                jumpPressed.current = false
+                mobileController.jumpPressed = false
                 break
             case "run":
-                runPressed.current = false
+                mobileController.runPressed = false
                 break
         }
     }
