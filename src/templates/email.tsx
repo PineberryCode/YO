@@ -2,9 +2,7 @@ import { EmailFormFromUser } from '@/models/mail'
 import React from 'react'
 import { Html, Head, Body, Container, Section, Heading, Text } from '@react-email/components'
 
-interface EmailTemplateProps extends EmailFormFromUser { }
-
-const EmailTemplate: React.FC<EmailTemplateProps> = ({ email, subject, message }) => {
+const EmailTemplate: React.FC<EmailFormFromUser> = ({ email, subject, message }) => {
     return (
         <Html>
             <Head />

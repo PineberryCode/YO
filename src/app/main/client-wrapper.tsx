@@ -21,7 +21,7 @@ const ClientWrapper = ({ children }: Readonly<{ children: ReactNode }>) => {
 
             clearTimeout(timer)
         }
-    }, [])
+    }, [loadComponentHaveLoaded])
 
     if (loadComponentHaveLoaded) {
         return <Load finished={[loadComponentHaveLoaded, setLoadComponentHaveLoaded]} />

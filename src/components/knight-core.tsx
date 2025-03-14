@@ -1,20 +1,26 @@
+import { Mesh, Material } from 'three'
 import { useGLTF, useKeyboardControls } from "@react-three/drei"
 import { useFrame } from "@react-three/fiber"
 import { CapsuleCollider, RigidBody } from "@react-three/rapier"
-import { MathUtils } from "three/src/math/MathUtils.js"
 import useWarden from "@/hooks/use-guard"
 import useRespawn from "@/hooks/use-respawn"
 import { useEffect } from "react"
 import DeviceController from "@/models/device-controller"
-import motions from "@/controllers/controller"
+import motions, { Controls } from "@/controllers/controller"
+import { GLTF } from 'three-stdlib'
+
+type GLTFResult = {
+    nodes: Record<string, Mesh>,
+    materials: Record<string, Material>
+}
 
 const KnightChess: React.FC = () => {
-    const { isActive, setIsActive } = useWarden()
-    const { nodes, materials } = useGLTF('/red_knight.glb') as any
+    const { isActive } = useWarden()
+    const { nodes, materials } = useGLTF('/red_knight.glb') as GLTF & GLTFResult
 
     const deviceControl = DeviceController.instance
 
-    const [_, get] = useKeyboardControls()
+    const [, get] = useKeyboardControls<Controls>()
 
     const { hasFallen, setHasFallen, knightPosition } = useRespawn()
 
@@ -27,7 +33,7 @@ const KnightChess: React.FC = () => {
 
             setHasFallen(false)
         }
-    }, [hasFallen, setHasFallen, knightPosition])
+    }, [hasFallen, setHasFallen, knightPosition, deviceControl.rigidBody])
 
     useFrame(({ camera }) => {
         if (isActive) { return }

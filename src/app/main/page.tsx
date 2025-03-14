@@ -1,10 +1,10 @@
 "use client"
 
 import { Canvas } from '@react-three/fiber'
-import { KeyboardControls, Plane } from '@react-three/drei'
-import React, { useEffect } from 'react'
+import { KeyboardControls } from '@react-three/drei'
+import React from 'react'
 import KnightChess from '@/components/knight-core'
-import { Physics, RigidBody } from "@react-three/rapier"
+import { Physics } from "@react-three/rapier"
 import { KeyMotions } from '@/models/keyboard'
 import { Toaster } from '@/components/ui/sonner'
 import { SemiPlane, LimitPlane } from '@/components/plane'

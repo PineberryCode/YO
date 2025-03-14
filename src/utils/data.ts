@@ -1,7 +1,6 @@
 import { LineObj } from "@/models/terminal"
 import { TextItem } from "@/models/texts"
-import { CodeSquareIcon, FolderRoot, Github, Home, Instagram, LucideSquareDashedBottomCode, Mail, MessageCircle } from "lucide-react"
-import React from "react"
+import { CodeSquareIcon, FolderRoot, Github, Home, Instagram, LucideSquareDashedBottomCode, MessageCircle } from "lucide-react"
 
 const lineObj: LineObj[] = [
     {

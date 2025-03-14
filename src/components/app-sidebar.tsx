@@ -2,14 +2,12 @@ import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGrou
 import { Leaf, PersonStanding } from "lucide-react"
 import { Button } from "./ui/button"
 import { itemsSidebar } from "@/utils/data"
-import React, { useState } from "react"
+import React from "react"
 import useWarden from "@/hooks/use-guard"
-import { showAboutMe, showContactToMe, showHobbies, showProjects } from "@/utils/show-card"
-import { Tooltip, TooltipProvider, TooltipTrigger } from "./ui/tooltip"
+import { showAboutMe, showContactToMe, showHobbies, showProjects } from "@/components/show-card"
 
 const AppSidebar = () => {
     const { setIsActive } = useWarden()
-    const [loading, setLoading] = useState(false)
 
     return (
         <Sidebar variant="inset" collapsible="icon">

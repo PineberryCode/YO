@@ -15,13 +15,13 @@ type ProgressMap = {
 }
 
 const Load: React.FC<LoadingProps> = ({ finished }) => {
-    const [isLoading, setIsLoading] = finished
+    const [, setIsLoading] = finished
 
-    let [index, setIndex] = useState<number>(1)
+    const [index, setIndex] = useState<number>(1)
     const commandLine = "pip install mindlunny=1.0.0"
     const [dynamicLine, setDynamicLine] = useState<string>(commandLine.substring(0, index))
     // Position of "lineObj (@/utils/data)"
-    const [_, setIndexLineObj] = useState<number>(1)
+    const [, setIndexLineObj] = useState<number>(1)
     //Store all lines of the variable "lineObj"
     const [visibleItems, setVisibleItems] = useState<LineObj[]>([])
     const [progressValue, setProgressValue] = useState<Map<string, ProgressMap>>(new Map())
@@ -36,7 +36,7 @@ const Load: React.FC<LoadingProps> = ({ finished }) => {
 
             return () => clearTimeout(finishedTimer)
         }
-    }, [visibleItems, isLoading])
+    }, [visibleItems, setIsLoading])
 
     // Prevents the creation of a random number each time a component renders
     useEffect(() => {

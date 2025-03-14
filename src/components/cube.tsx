@@ -2,7 +2,7 @@ import React, {  } from 'react'
 import { RoundedBox } from '@react-three/drei'
 import { CollisionTarget, RigidBody } from '@react-three/rapier'
 import { Warden } from './warden-window'
-import { showAboutMe, showContactToMe, showHobbies, showProjects } from '@/utils/show-card'
+import { showAboutMe, showContactToMe, showHobbies, showProjects } from '@/components/show-card'
 
 interface CubeProps {
     warden: Warden

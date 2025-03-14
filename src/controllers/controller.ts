@@ -2,7 +2,11 @@ import DeviceController from "@/models/device-controller";
 import { Camera } from "@react-three/fiber";
 import { MathUtils } from "three";
 
-function motions(camera: Camera, get: any, device: DeviceController) {
+export type Controls = "left" | "right" | "forward" | "backward" | "run" | "jump"
+
+type GetControls = () => Record<Controls, boolean>
+
+function motions(camera: Camera, get: GetControls, device: DeviceController) {
     if (device.rigidBody.current) {
         const velocity = device.rigidBody.current.linvel()
 
@@ -21,7 +25,7 @@ function motions(camera: Camera, get: any, device: DeviceController) {
             movement.z = Math.cos(device.rotationTarget.current)
         }
 
-        let speed = (get().run || device.runPressed.current) ? device.runSpeed : device.walkSpeed
+        const speed = (get().run || device.runPressed.current) ? device.runSpeed : device.walkSpeed
         velocity.x = movement.x * speed
         velocity.z = movement.z * speed
 

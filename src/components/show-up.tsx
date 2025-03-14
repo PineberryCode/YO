@@ -1,6 +1,6 @@
-import React, { SetStateAction, useEffect } from "react"
+import React from "react"
 import { Separator } from "./ui/separator"
-import { CircleX, LucideIcon, Mail } from "lucide-react"
+import { CircleX, LucideIcon } from "lucide-react"
 import { toast } from "sonner"
 import { Button } from "./ui/button"
 import useWarden from "@/hooks/use-guard"

@@ -1,11 +1,10 @@
-import { Bot, Contact, FileUser, FolderRoot, Leaf, Link as LinkIcon, LoaderCircle, Mail } from "lucide-react";
-import { contentObj } from "./data";
+import { Bot, Contact, FileUser, FolderRoot, Leaf, Link as LinkIcon, Mail } from "lucide-react";
+import { contentObj } from "../utils/data";
 import SoonerDialog from "@/components/show-up";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { Dispatch, SetStateAction, useState } from "react";
 
 function showHobbies() {
     return SoonerDialog({

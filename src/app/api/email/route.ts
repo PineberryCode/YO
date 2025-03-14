@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
             }
         }
 
-        let transporter = nodemailer.createTransport({
+        const transporter = nodemailer.createTransport({
             service: "gmail",
             auth: {
                 user: email,
@@ -42,7 +42,10 @@ export async function POST(req: NextRequest) {
         await transporter.sendMail(message)
 
         return NextResponse.json({ message: "Email sent!" }, { status: 200 })
-    } catch (err: any) {
-        return NextResponse.json({ message: err.message }, { status: 500 })
+    } catch (err: unknown) {
+        if (err instanceof Error) {
+            return NextResponse.json({ message: err.message }, { status: 500 });
+        }
+        return NextResponse.json({ message: "An unknown error occurred" }, { status: 500 })
     }
 }

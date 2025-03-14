@@ -1,5 +1,4 @@
-import { RefreshCw } from "lucide-react"
-import React, { createContext, Dispatch, SetStateAction, useEffect, useState } from "react"
+import React, { createContext, useState } from "react"
 
 interface Respawn {
     hasFallen: boolean,
