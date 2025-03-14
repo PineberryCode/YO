@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { render as renderFromRE } from '@react-email/render'
 import EmailTemplate from '@/templates/email'
 import React from "react"
-const nodemailer = require("nodemailer")
+import nodemailer from 'nodemailer'
 
 const email = process.env.EMAIL_FROM
 const password = process.env.PASSWORD
