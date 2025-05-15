@@ -114,7 +114,7 @@ const contentObj: TextItem[] = [
                 subTitle: "Who are you?",
                 text:
                     `
-                        I am a engineer system student focused on software development, 
+                        I am an engineer system student focused on software development, 
                         including design, processes, performance, and security. Therefore, 
                         I am interested in network communications, I have knowledge of VLAN 
                         setup, subnetting (VLSM), Asterisk (VoIP) implementation, 
@@ -167,9 +167,8 @@ const contentObj: TextItem[] = [
                 subTitle: "Chess",
                 text:
                     `
-                        Chess is a challenging game for me.
-                        I find it frustrating when I go on a losing streak, 
-                        but I still appreciate the strategic depth it offers.
+                        Chess is a challenging game for me. 
+                        I find it frustrating when I lose matches but I go to play despite having a losing streak (I abhor that).
                     `
             },
             {
@@ -177,15 +176,13 @@ const contentObj: TextItem[] = [
                 text:
                     `
                         I enjoy coming up with ideas and working on personal projects.
-                        While I sometimes struggle with consistency, I am committed to 
-                        finishing what I start.
                     `
             },
             {
                 subTitle: "Learning Russian",
                 text:
                     `
-                        I started learning Russian intermittenly in 2024.
+                        I started learning Russian intermittently from 2024.
                     `
             }
         ]
