@@ -111,7 +111,7 @@ const contentObj: TextItem[] = [
         id: "about-me",
         item: [
             {
-                subTitle: "Who are you?",
+                subTitle: "Who am I?",
                 text:
                     `
                         I am an engineer system student focused on software development, 
@@ -122,7 +122,7 @@ const contentObj: TextItem[] = [
                     `
             },
             {
-                subTitle: "When did you start in development area?",
+                subTitle: "When did I start in development area?",
                 text:
                     `
                         Initially, I started development in 2020, and I was interested in
@@ -132,7 +132,7 @@ const contentObj: TextItem[] = [
                     `
             },
             {
-                subTitle: "Which languages do you speak?",
+                subTitle: "Which languages do I speak?",
                 text: "Spanish,English,Russian (basic)"
             },
         ]
@@ -153,7 +153,7 @@ const contentObj: TextItem[] = [
                 subTitle: "MINDSGGER",
                 text:
                     `
-                        You can send the captured data from user and 
+                        You can send the captured data from user-victim and 
                         send to your gmail account.
                         Link: https://github.com/PineberryCode/MINDSGGER
                     `
