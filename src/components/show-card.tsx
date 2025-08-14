@@ -31,8 +31,14 @@ function showHobbies() {
                                         <p key={`paragraph-${index}-${c}`} className='font-pixel text-sm text-justify'>
                                             {item.text}
                                         </p>
+                                        {item.link && (
+                                            <a key={`link-${index}-${c}`} className="flex font-pixel text-sm items-center gap-x-3" target="_blank" href={item.link.link} >
+                                                <LinkIcon className="w-4 h-4" /> {item.link.text}: {item.link.link}
+                                            </a>
+                                        )}
                                     </CarouselItem>
-                                ))}
+                                )
+                                )}
                             </CarouselContent>
                             <CarouselPrevious />
                             <CarouselNext />

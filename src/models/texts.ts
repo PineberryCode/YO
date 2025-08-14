@@ -16,4 +16,10 @@ export type TextItem = {
 export type TextContent = {
     subTitle: string,
     text: string
+    link?: Linky | undefined
+}
+
+type Linky = {
+    text: string,
+    link: string
 }

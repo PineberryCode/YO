@@ -169,7 +169,12 @@ const contentObj: TextItem[] = [
                     `
                         Chess is a challenging game for me. 
                         I find it frustrating when I lose matches but I go to play despite having a losing streak (I abhor that).
-                    `
+                    `,
+                
+                link: {
+                    text: "Play against me",
+                    link: "https://www.chess.com/member/withusername"
+                }
             },
             {
                 subTitle: "Building things",
