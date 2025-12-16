@@ -1,7 +1,7 @@
 ## Resumé
 This is an introduction about myself.
 
-#### Build With
+#### Built With
 - React Three Fiber (R3F)
 - Next.js
 - Shadcn
